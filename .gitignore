@@ -5,8 +5,7 @@ checkpoints/
 model_outputs/checkpoint-*/
 
 # Logs
-logs/
-*.log
+
 
 # Python cache files
 __pycache__/
