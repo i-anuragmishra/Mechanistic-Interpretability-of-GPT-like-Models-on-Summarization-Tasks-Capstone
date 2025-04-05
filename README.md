@@ -1,4 +1,4 @@
-# GPT-2 Fine-tuning for Text Summarization with Interpretability Analysis
+# Mechanistic Interpretability of GPT-like Models on Summarization Tasks
 
 ## Project Title and Author Information
 **Project Title**: Mechanistic Interpretability of GPT-like Models on Summarization Tasks  
