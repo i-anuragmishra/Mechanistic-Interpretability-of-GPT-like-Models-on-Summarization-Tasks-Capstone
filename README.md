@@ -28,9 +28,10 @@ Our experiments compare zero-shot and fine-tuned GPT-2 on the CNN/DailyMail data
 ├── run_experiment.sh              # Experiment execution script
 ├── requirements.txt               # Python dependencies
 │
-├── visualizations/                # Generated visualization files
 ├── interpretability_metrics/      # Stored interpretability metrics
+├── visualizations/                # Generated visualization files
 ├── logs/                          # Training and experiment logs
+├── images/                        # Framework diagrams and result visualizations
 └── checkpoints/                   # Model checkpoints (gitignored)
 ```
 
@@ -133,7 +134,6 @@ The project generates several types of visualizations stored in the `visualizati
    - 3D UMAP visualizations
    - Interactive HTML plots
    - Evolution GIFs
-   - Note: Full latent space evolution files are stored locally in the gitignored `latent_space_evolution` directory
 
 3. **Model Metrics**
    - Temporal metrics evolution
@@ -211,7 +211,6 @@ MIT License
 ## Notes
 - The `checkpoints/` directory is gitignored to prevent large model files from being pushed to GitHub
 - The `model_outputs/` directory is also gitignored to prevent large model files from being pushed to GitHub
-- The `latent_space_evolution/` directory contains large visualization files and is gitignored
 - Only essential code files, visualization summaries, interpretability metrics, and logs are pushed to the repository
 - All metrics and logs are stored in their respective directories
-- Visualizations are generated automatically during training and can be regenerated using `visualize_metrics.py` 
+- Visualizations are generated automatically during training and can be regenerated using `visualize_metrics.py`
