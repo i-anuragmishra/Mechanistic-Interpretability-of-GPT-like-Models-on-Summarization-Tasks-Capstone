@@ -1,7 +1,7 @@
-# GPT-2 Fine-tuning for Text Summarization with Interpretability Analysis
+# Mechanistic Interpretability of GPT-like Models on Summarization Tasks
 
 ## Project Title and Author Information
-**Project Title**: GPT-2 Fine-tuning for Text Summarization with Mechanistic Interpretability Analysis  
+**Project Title**: Mechanistic Interpretability of GPT-like Models on Summarization Tasks
 **Author**: Anurag Mishra  
 **Institution**: Rochester Institute of Technology  
 **Contact**: am2552@rit.edu
