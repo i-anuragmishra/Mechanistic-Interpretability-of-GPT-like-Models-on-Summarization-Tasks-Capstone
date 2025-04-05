@@ -26,6 +26,7 @@ Our experiments compare zero-shot and fine-tuned GPT-2 on the CNN/DailyMail data
 ├── requirements.txt               # Python dependencies
 │
 ├── visualizations/                # Generated visualization files
+├── interpretability_metrics/      # Stored interpretability metrics
 ├── logs/                          # Training and experiment logs
 └── checkpoints/                   # Model checkpoints (gitignored)
 ```
