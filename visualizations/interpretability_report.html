@@ -1,0 +1,70 @@
+
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <title>GPT-2 Fine-tuning Interpretability Report</title>
+        <style>
+            body { font-family: Arial, sans-serif; margin: 20px; line-height: 1.6; }
+            h1, h2, h3 { color: #444; }
+            .container { max-width: 1200px; margin: 0 auto; }
+            .visualization { margin: 20px 0; text-align: center; }
+            .metrics { margin: 20px 0; }
+            table { border-collapse: collapse; width: 100%; }
+            th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+            th { background-color: #f2f2f2; }
+            .footer { margin-top: 30px; font-size: 0.8em; color: #777; }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <h1>GPT-2 Fine-tuning Interpretability Report</h1>
+            <p>Generated on 2025-04-01 01:56:01</p>
+            <p>These visualizations have been created from metrics captured during the fine-tuning process before the server connection was closed.</p>
+            
+            
+            <h2>Attention Head Evolution</h2>
+            <div class="visualization">
+                <img src="attention_head_evolution.gif" alt="Attention Head Evolution" width="800">
+                <p>Visualization showing how attention head metrics (entropy, sparsity, importance) evolve during training.</p>
+            </div>
+            
+            <h2>Latent Space Evolution</h2>
+            <div class="visualization">
+                <img src="latent_space_3d_rotation.gif" alt="3D Latent Space Evolution" width="800">
+                <p>3D visualization of how the latent space evolves during fine-tuning. Each color represents a different training step.</p>
+                <p><a href='latent_space_3d_evolution.html' target='_blank'>Interactive 3D Visualization</a></p>
+            </div>
+            
+            <h2>Attention Weights Evolution</h2>
+            <div class="visualization">
+                <img src="attention_weights_evolution.gif" alt="Attention Weights Evolution" width="800">
+                <p>Visualization showing how attention weights for Layer 5, Head 8 change during fine-tuning.</p>
+            </div>
+            
+            <h2>Temporal Metrics Evolution</h2>
+            <div class="visualization">
+                <img src="temporal_metrics_evolution.png" alt="Temporal Metrics Evolution" width="800">
+                <p>Line chart showing how different attention metrics change over training steps.</p>
+                <p><a href='temporal_metrics_evolution.html' target='_blank'>Interactive Metrics Visualization</a></p>
+            </div>
+            
+            <h2>Weight Changes</h2>
+            <div class="visualization">
+                <img src="weight_changes_evolution.png" alt="Weight Changes Evolution" width="800">
+                <p>Visualization of how weights in attention layers change during fine-tuning (measured as L2 norm of difference from initial weights).</p>
+                <p><a href='weight_changes_evolution.html' target='_blank'>Interactive Weight Changes Visualization</a></p>
+            </div>
+            
+            <h2>Neuron Activation Patterns</h2>
+            <div class="visualization">
+                <img src="neuron_activations_evolution.gif" alt="Neuron Activations Evolution" width="800">
+                <p>Visualization showing how neuron activation patterns change during fine-tuning.</p>
+            </div>
+            
+            <div class="footer">
+                <p>Generated using the GPT-2 Fine-tuning Interpretability Visualization Script</p>
+            </div>
+        </div>
+    </body>
+    </html>
+    
