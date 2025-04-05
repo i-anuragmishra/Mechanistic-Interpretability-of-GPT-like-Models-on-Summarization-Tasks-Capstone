@@ -127,12 +127,10 @@ The project generates several types of visualizations stored in the `visualizati
 
 1. **Attention Head Evolution**
    - GIF showing attention head metrics evolution
-   - Interactive HTML visualizations
    - Heatmaps of attention patterns
 
 2. **Latent Space Analysis**
    - 3D UMAP visualizations
-   - Interactive HTML plots
    - Evolution GIFs
 
 3. **Model Metrics**
@@ -141,7 +139,7 @@ The project generates several types of visualizations stored in the `visualizati
    - Gradient norm analysis
    - Neuron activation patterns
 
-All visualizations are accessible through the generated HTML report at `visualizations/interpretability_report.html`.
+Note: HTML visualizations are generated locally but not included in the repository.
 
 ## Preliminary Results and Discussion
 
@@ -211,6 +209,7 @@ MIT License
 ## Notes
 - The `checkpoints/` directory is gitignored to prevent large model files from being pushed to GitHub
 - The `model_outputs/` directory is also gitignored to prevent large model files from being pushed to GitHub
-- Only essential code files, visualization summaries, interpretability metrics, and logs are pushed to the repository
+- HTML files in the visualizations directory are gitignored
+- Only essential code files, visualization summaries (non-HTML), interpretability metrics, and logs are pushed to the repository
 - All metrics and logs are stored in their respective directories
 - Visualizations are generated automatically during training and can be regenerated using `visualize_metrics.py`

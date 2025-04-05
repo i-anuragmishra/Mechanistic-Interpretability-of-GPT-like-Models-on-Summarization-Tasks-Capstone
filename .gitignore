@@ -4,6 +4,9 @@ checkpoints/
 # Large model files
 model_outputs/checkpoint-*/
 
+# HTML files in visualizations directory
+visualizations/*.html
+
 # Logs
 
 
