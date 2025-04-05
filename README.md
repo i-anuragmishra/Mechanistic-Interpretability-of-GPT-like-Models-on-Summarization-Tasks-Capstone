@@ -25,9 +25,6 @@ Our experiments compare zero-shot and fine-tuned GPT-2 on the CNN/DailyMail data
 ├── run_experiment.sh              # Experiment execution script
 ├── requirements.txt               # Python dependencies
 │
-├── attention_analysis/            # Attention mechanism analysis (structure only)
-├── latent_space_evolution/        # Latent space evolution tracking (gitignored)
-├── interpretability_metrics/      # Stored interpretability metrics
 ├── visualizations/                # Generated visualization files
 ├── logs/                          # Training and experiment logs
 └── checkpoints/                   # Model checkpoints (gitignored)
