@@ -15,6 +15,9 @@ Mechanistic interpretability represents a critical frontier in NLP, enabling res
 
 Our experiments compare zero-shot and fine-tuned GPT-2 on the CNN/DailyMail dataset, establishing differences in internal representations and attention patterns. The analysis incorporates metrics including Attention Entropy, Activation Magnitudes, and Representational Similarity Analysis.
 
+### Framework Overview
+![Framework Visualization](images/frame%20work%20.png)
+
 ## Code Structure Overview
 ```
 .
@@ -154,6 +157,8 @@ The results show clear improvements across all metrics for fine-tuned versus zer
 Our analysis reveals significant transformations in attention patterns and internal activations between pre-trained and fine-tuned models:
 
 1. **KL Divergence**: The KL divergence heatmap quantifies attention distribution differences. Heads (6,8) and (10,5) showed highest divergence (0.85 and 0.78 respectively). Middle layers (5-8) exhibit most dramatic changes, suggesting specialized document-level semantic processing.
+
+![KL Divergence Heatmap](images/kl_divergence.png)
 
 2. **Entropy Visualization**: The entropy visualization shows negative values (blue) indicating focused attention post-fine-tuning, while positive values (red) show diffused attention. Head 11 in Layer 4 shows strongest focus (-0.47).
 
