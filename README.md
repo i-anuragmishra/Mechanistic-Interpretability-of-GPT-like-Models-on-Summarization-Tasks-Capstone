@@ -1,13 +1,19 @@
-# Mechanistic Interpretability of GPT-like Models on Summarization Tasks
+# GPT-2 Fine-tuning for Text Summarization with Interpretability Analysis
 
 ## Project Title and Author Information
-**Project Title**: Mechanistic Interpretability of GPT-like Models on Summarization Tasks
+**Project Title**: Mechanistic Interpretability of GPT-like Models on Summarization Tasks  
 **Author**: Anurag Mishra  
 **Institution**: Rochester Institute of Technology  
-**Contact**: am2552@rit.edu
+**Contact**: am2552@rit.edu  
+**Course**: IDAI-780 Capstone Project
 
 ## Cover Figure or Framework
 ![GPT-2 Attention Head Evolution](visualizations/attention_head_evolution.gif)
+
+## Introduction
+Mechanistic interpretability represents a critical frontier in NLP, enabling researchers to understand the internal mechanisms of large language models beyond black-box approaches. This project investigates how GPT-like models process and generate text summaries, focusing on latent-space transformations during summarization.
+
+Our experiments compare zero-shot and fine-tuned GPT-2 on the CNN/DailyMail dataset, establishing differences in internal representations and attention patterns. The analysis incorporates metrics including Attention Entropy, Activation Magnitudes, and Representational Similarity Analysis.
 
 ## Code Structure Overview
 ```
@@ -19,14 +25,23 @@
 ├── run_experiment.sh              # Experiment execution script
 ├── requirements.txt               # Python dependencies
 │
-├── attention_analysis/            # Attention mechanism analysis
-├── latent_space_evolution/        # Latent space evolution tracking
-├── interpretability_metrics/      # Stored interpretability metrics
 ├── visualizations/                # Generated visualization files
+├── interpretability_metrics/      # Stored interpretability metrics
 ├── logs/                          # Training and experiment logs
-├── model_outputs/                 # Model outputs and predictions
 └── checkpoints/                   # Model checkpoints (gitignored)
 ```
+
+## Dataset Description and Preparation
+This work utilizes the CNN/DailyMail dataset (version 3.0.0), a widely established benchmark for abstractive summarization tasks. The dataset comprises over 300,000 news articles with human-generated summary highlights.
+
+The dataset is divided into standard splits:
+- 287,113 articles for training
+- 13,368 for validation
+- 11,490 for testing
+
+Articles average approximately 766 words (29.7 sentences), while summaries average 53 words (3.7 sentences). This significant compression ratio makes the dataset particularly relevant for summarization tasks.
+
+For preprocessing, we employ the GPT-2 tokenizer, apply standard cleaning procedures including special character removal and whitespace normalization, and truncate documents to fit the 1024 token limit of our model.
 
 ## Installation and Environment
 ### Prerequisites
@@ -70,6 +85,28 @@ Monitor training progress using TensorBoard:
 tensorboard --logdir=logs
 ```
 
+## Evaluation Methodology
+While output quality metrics provide surface-level evaluations, mechanistic interpretability requires specialized metrics to quantify model internals. Our approach employs both model-internal and output-quality assessments.
+
+### Interpretability Metrics
+These metrics directly quantify model-internal mechanisms across adaptation stages:
+
+1. **KL Divergence of Attention Distributions**: Quantifies attention pattern shifts during adaptation, identifying heads undergoing reconfiguration for summarization. Compares distributions between fine-tuned and pre-trained models.
+
+2. **Attention Entropy**: Measures focus of attention mechanisms. Lower entropy indicates focused attention on specific tokens; higher entropy indicates diffuse attention. Quantifies whether summarization adaptation leads to concentrated attention on salient information.
+
+3. **Representational Similarity Analysis (RSA)**: Tracks how internal representations evolve through model layers and how transformations differ between pre-trained and fine-tuned variants, revealing adaptation effects on hierarchical feature extraction.
+
+4. **Activation Magnitudes**: Identifies layers contributing most significantly to model behavior, locating critical processing stages in summarization pathways by measuring average magnitude of activations in each layer.
+
+### Summarization Metrics
+While less informative about internal mechanisms, these metrics benchmark output quality:
+
+- **ROUGE-1, ROUGE-2, ROUGE-L**: Measure unigram, bigram, and longest common subsequence overlap between generated and reference summaries.
+- **METEOR**: Evaluates semantic similarity accounting for synonyms and stemming.
+
+These provide standardized benchmarks but offer limited insight into internal model mechanisms.
+
 ## Demo Example
 ### Sample Input (Article)
 ```
@@ -93,6 +130,7 @@ The project generates several types of visualizations stored in the `visualizati
    - 3D UMAP visualizations
    - Interactive HTML plots
    - Evolution GIFs
+   - Note: Full latent space evolution files are stored locally in the gitignored `latent_space_evolution` directory
 
 3. **Model Metrics**
    - Temporal metrics evolution
@@ -101,6 +139,25 @@ The project generates several types of visualizations stored in the `visualizati
    - Neuron activation patterns
 
 All visualizations are accessible through the generated HTML report at `visualizations/interpretability_report.html`.
+
+## Preliminary Results and Discussion
+
+### Summarization Performance
+| Model | ROUGE-1 | ROUGE-2 | ROUGE-L | ROUGE-Lsum |
+|-------|---------|---------|---------|------------|
+| GPT-2 (zero-shot) | 18.75% | 1.14% | 13.56% | 16.32% |
+| GPT-2 (fine-tuned) | 23.36% | 1.87% | 14.28% | 20.59% |
+
+The results show clear improvements across all metrics for fine-tuned versus zero-shot GPT-2. ROUGE-1 increases by 4.61 points (18.75% to 23.36%), and ROUGE-Lsum by 4.27 points (16.32% to 20.59%). These results establish a baseline and provide a foundation for correlating internal model changes with performance improvements.
+
+### Attention Visualization Analysis
+Our analysis reveals significant transformations in attention patterns and internal activations between pre-trained and fine-tuned models:
+
+1. **KL Divergence**: The KL divergence heatmap quantifies attention distribution differences. Heads (6,8) and (10,5) showed highest divergence (0.85 and 0.78 respectively). Middle layers (5-8) exhibit most dramatic changes, suggesting specialized document-level semantic processing.
+
+2. **Entropy Visualization**: The entropy visualization shows negative values (blue) indicating focused attention post-fine-tuning, while positive values (red) show diffused attention. Head 11 in Layer 4 shows strongest focus (-0.47).
+
+3. **Activation Strength**: Our analyses also examined activation strength shifts across model layers. Layer 5 showed the highest overall activation, while earlier layers showed the largest relative changes.
 
 ## Model Card Information
 ### Model Details
@@ -125,16 +182,21 @@ All visualizations are accessible through the generated HTML report at `visualiz
 | GPT-2 (zero-shot) | 18.75% | 1.14% | 13.56% | 16.32% |
 | GPT-2 (fine-tuned) | 23.36% | 1.87% | 14.28% | 20.59% |
 
+## Conclusion and Next Steps
+These experiments establish baseline ROUGE performance and latent-space interpretability differences between fine-tuned and zero-shot GPT-2 models on summarization tasks.
+
+Next steps include exploring additional interpretability metrics and enhanced visualization techniques for attention patterns and activation graphs to track information flow.
+
 ## Citation
 If you use this work in your research, please cite:
 ```
 @misc{mishra2023gpt2finetuning,
   author = {Mishra, Anurag},
-  title = {GPT-2 Fine-tuning for Text Summarization with Mechanistic Interpretability Analysis},
+  title = {Mechanistic Interpretability of GPT-like Models on Summarization Tasks},
   year = {2023},
   publisher = {GitHub},
   institution = {Rochester Institute of Technology},
-  howpublished = {\url{https://github.com/anuragmishra/gpt2-summarization}}
+  howpublished = {\url{https://github.com/i-anuragmishra/Mechanistic-Interpretability-of-GPT-like-Models-on-Summarization-Tasks-Capstone}}
 }
 ```
 
@@ -143,5 +205,8 @@ MIT License
 
 ## Notes
 - The `checkpoints/` directory is gitignored to prevent large model files from being pushed to GitHub
+- The `model_outputs/` directory is also gitignored to prevent large model files from being pushed to GitHub
+- The `latent_space_evolution/` directory contains large visualization files and is gitignored
+- Only essential code files, visualization summaries, interpretability metrics, and logs are pushed to the repository
 - All metrics and logs are stored in their respective directories
 - Visualizations are generated automatically during training and can be regenerated using `visualize_metrics.py` 
