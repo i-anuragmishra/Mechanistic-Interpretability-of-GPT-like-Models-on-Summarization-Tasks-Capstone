@@ -54,4 +54,5 @@ venv.bak/
 .idea/
 .vscode/
 *.swp
-*.swo 
+*.swo
+summarization_circuit/activations.pt

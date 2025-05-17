@@ -35,6 +35,25 @@ Our experiments compare zero-shot and fine-tuned GPT-2 on the CNN/DailyMail data
 └── checkpoints/                   # Model checkpoints (gitignored)
 ```
 
+## Summarization Circuit Kernel
+The `summarization_circuit` package contains utilities for attaching hooks to
+GPT-2 layers. This allows targeted analysis of summarization circuits without
+modifying the main training script.
+
+Example usage:
+
+```python
+from transformers import GPT2LMHeadModel
+from summarization_circuit import SummarizationCircuitKernel
+
+model = GPT2LMHeadModel.from_pretrained("gpt2")
+kernel = SummarizationCircuitKernel(model, layers=[0, 1, 2])
+kernel.attach()
+# Run model forward passes here
+activations = kernel.get_activations()
+kernel.detach()
+```
+
 ## Dataset Description and Preparation
 This work utilizes the CNN/DailyMail dataset (version 3.0.0), a widely established benchmark for abstractive summarization tasks. The dataset comprises over 300,000 news articles with human-generated summary highlights.
 

@@ -33,6 +33,7 @@ import json
 from datetime import datetime
 from bertviz import model_view, head_view
 import re
+from summarization_circuit import SummarizationCircuitKernel
 
 # Set seed for reproducibility
 seed = 42
@@ -58,6 +59,10 @@ off_the_shelf_model = GPT2LMHeadModel.from_pretrained("gpt2")
 
 # Initialize the fine-tuned model from the pre-trained one
 fine_tuned_model = GPT2LMHeadModel.from_pretrained("gpt2")
+
+# Attach summarization circuit hooks
+circuit_kernel = SummarizationCircuitKernel(fine_tuned_model, layers=list(range(12)))
+circuit_kernel.attach()
 
 # GPT-2 doesn't have a padding token, so we'll set it to the EOS token
 tokenizer.pad_token = tokenizer.eos_token
@@ -379,6 +384,10 @@ trainer = Trainer(
 # Train the model
 print("Fine-tuning the model...")
 trainer.train()
+
+# Detach hooks and optionally save captured activations
+circuit_kernel.detach()
+torch.save(circuit_kernel.get_activations(), "summarization_circuit/activations.pt")
 
 # Save the fine-tuned model
 model_save_path = "model_outputs/gpt2_cnn_dailymail"
